@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musée des Pompiers</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Background Layer -->
+        <div class="background-layer">
+            <img id="main-bg" src="assets/images/bg-home.jpg" alt="Background">
+            <div class="overlay"></div>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <select id="lang-select">
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="lb">Lëtzebuergesch</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <!-- Navigation / Views -->
+        <main>
+            <!-- HOME VIEW -->
+            <section id="view-home" class="active">
+                <header class="home-header">
+                    <h1 id="home-title" data-i18n="homeTitle">Bienvenue sur le site du musée des pompiers</h1>
+                </header>
+
+                <div class="cards-container">
+                    <div class="card" data-target="photos">
+                        <div class="card-image" style="background-image: url('assets/images/card-photos.jpg');"></div>
+                        <div class="card-content">
+                            <h2 data-i18n="cardPhotosTitle">Photos</h2>
+                            <p data-i18n="cardPhotosDesc">Explorez notre galerie</p>
+                        </div>
+                    </div>
+                    <div class="card" data-target="articles">
+                        <div class="card-image" style="background-image: url('assets/images/card-articles.png');"></div>
+                        <div class="card-content">
+                            <h2 data-i18n="cardArticlesTitle">Articles</h2>
+                            <p data-i18n="cardArticlesDesc">Découvrez nos archives</p>
+                        </div>
+                    </div>
+                    <div class="card" data-target="videos">
+                        <div class="card-image" style="background-image: url('assets/images/card-videos.png');"></div>
+                        <div class="card-content">
+                            <h2 data-i18n="cardVideosTitle">Vidéos</h2>
+                            <p data-i18n="cardVideosDesc">Visionnez nos reportages</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MAP VIEW (Shared for Photos, Articles, Videos) -->
+            <section id="view-map">
+                <button class="btn-back" data-i18n="btnBack">← Retour</button>
+                <div class="map-container">
+                    <h1 data-i18n="mapTitle">Carte du Luxembourg</h1>
+                    <p class="instruction" id="map-instruction">Sélectionnez un canton pour voir les contenus</p>
+                    <div id="luxembourg-map">
+                        <!-- SVG Map will be injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- CAROUSEL VIEW -->
+            <section id="view-details">
+                <button class="btn-back" data-i18n="btnBackToMap">← Retour à la carte</button>
+
+                <h1 id="details-title">Canton Details</h1>
+
+                <div class="carousel-wrapper" role="region" aria-label="Media carousel">
+                    <button class="carousel-nav-btn prev" aria-label="Previous slide">‹</button>
+                    <div class="carousel" id="carousel" role="list" aria-live="polite">
+                        <!-- Items injected via JS -->
+                    </div>
+                    <button class="carousel-nav-btn next" aria-label="Next slide">›</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal for Zoom -->
+        <div id="modal" class="modal hidden">
+            <span class="close-modal">&times;</span>
+            <button id="btn-reset-zoom" class="btn-reset-zoom" style="display:none;">⟲ Reset</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
