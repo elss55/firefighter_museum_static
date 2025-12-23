@@ -263,7 +263,8 @@ svg.canton-map {
 .carousel-track {
     display: flex;
     gap: 30px;
-    padding: 20px 0; /* Vertical padding only to avoid math offset */
+    padding: 20px 0;
+    /* Vertical padding only to avoid math offset */
     width: max-content;
     will-change: transform;
     /* transition handled by JS for infinite loop jumps */
@@ -294,12 +295,10 @@ svg.canton-map {
 .carousel-item video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
-
-.carousel-caption {
-    display: none;
-    /* User requested removal */
+    object-fit: contain;
+    /* Letterbox/Pillarbox as requested */
+    background: #000;
+    /* Background for letterboxing */
 }
 
 /* CAROUSEL NAVIGATION */
@@ -316,11 +315,17 @@ svg.canton-map {
     font-size: 2rem;
     cursor: pointer;
     z-index: 1000;
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.3s, transform 0.2s, opacity 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(5px);
+}
+
+.carousel-nav-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
 }
 
 .carousel-nav-btn:hover {
