@@ -1,82 +1,41 @@
 /* script.js - Firefighter Museum Kiosk - STATIC VERSION */
 
-// ==================== STATIC CONTENT DATA ====================
-const STATIC_CONTENT = {
-    "clervaux": {
-        "photos": [
-            { "id": 64, "type": "image", "src": "assets/photos/clervaux/Bettembourg-Foto-Kantonalfest 4.jpg", "fileName": "Bettembourg-Foto-Kantonalfest 4.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 65, "type": "image", "src": "assets/photos/clervaux/Fischbach-Foto-TLF-Steyr.JPG", "fileName": "Fischbach-Foto-TLF-Steyr.JPG", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 66, "type": "image", "src": "assets/photos/clervaux/Fischbach-Foto-Reimerwon.jpg", "fileName": "Fischbach-Foto-Reimerwon.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 67, "type": "image", "src": "assets/photos/clervaux/Perlé-Foto-Kantonapr.-Claude Jean.jpg", "fileName": "Perlé-Foto-Kantonapr.-Claude Jean.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 68, "type": "image", "src": "assets/photos/clervaux/Oweiler-Foto-Schaum.jpg", "fileName": "Oweiler-Foto-Schaum.jpg", "isImage": true, "isPdf": false, "isVideo": false }
-        ],
-        "articles": [
-            { "id": 14, "type": "pdf", "src": "assets/articles/clervaux/1-Gründung-Artikel-Corpsen.pdf", "fileName": "1-Gründung-Artikel-Corpsen.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 15, "type": "image", "src": "assets/articles/clervaux/Bettendorf-Artikel-100 Joer-1980.jpg", "fileName": "Bettendorf-Artikel-100 Joer-1980.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 82, "type": "pdf", "src": "assets/articles/clervaux/2-Zentralvorstand-2010.pdf", "fileName": "2-Zentralvorstand-2010.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 83, "type": "pdf", "src": "assets/articles/clervaux/Angelsberg-Artikel-Hausbrand-1984.pdf", "fileName": "Angelsberg-Artikel-Hausbrand-1984.pdf", "isImage": false, "isPdf": true, "isVideo": false }
-        ],
-        "videos": [
-            { "id": 19, "type": "video", "src": "assets/videos/clervaux/luxmo.mp4", "fileName": "luxmo.mp4", "isImage": false, "isPdf": false, "isVideo": true }
-        ]
-    },
-    "vianden": {
-        "photos": [
-            { "id": 58, "type": "image", "src": "assets/photos/vianden/306448802_1797393853936186_5559383317814093051_n.jpg", "fileName": "306448802_1797393853936186_5559383317814093051_n.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 59, "type": "image", "src": "assets/photos/vianden/Angelsberg-Foto-Corps-001.jpg", "fileName": "Angelsberg-Foto-Corps-001.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 60, "type": "image", "src": "assets/photos/vianden/Angelsberg-Foto-Corps-002.jpg", "fileName": "Angelsberg-Foto-Corps-002.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 61, "type": "image", "src": "assets/photos/vianden/Angelsberg-Foto-Fändel-1936.jpg", "fileName": "Angelsberg-Foto-Fändel-1936.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 62, "type": "image", "src": "assets/photos/vianden/Asselborn-Foto-1975-1.jpg", "fileName": "Asselborn-Foto-1975-1.jpg", "isImage": true, "isPdf": false, "isVideo": false }
-        ],
-        "articles": [
-            { "id": 89, "type": "pdf", "src": "assets/articles/vianden/Schoos-Artikel-Scheunenbrand-1961.pdf", "fileName": "Schoos-Artikel-Scheunenbrand-1961.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 90, "type": "pdf", "src": "assets/articles/vianden/Schoos-Artikel-neuer MTW-2009.pdf", "fileName": "Schoos-Artikel-neuer MTW-2009.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 91, "type": "pdf", "src": "assets/articles/vianden/Schoos-Artikel-Fahnenweihe-1961.pdf", "fileName": "Schoos-Artikel-Fahnenweihe-1961.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 92, "type": "pdf", "src": "assets/articles/vianden/Lintgen PC-Artikel-Roben Marcel.pdf", "fileName": "Lintgen PC-Artikel-Roben Marcel.pdf", "isImage": false, "isPdf": true, "isVideo": false }
-        ],
-        "videos": []
-    },
-    "wiltz": {
-        "photos": [
-            { "id": 78, "type": "image", "src": "assets/photos/wiltz/Wiltz-Foto-Mander Friedchen-1898.jpg", "fileName": "Wiltz-Foto-Mander Friedchen-1898.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 79, "type": "image", "src": "assets/photos/wiltz/Tétange-Foto-Fändel.JPG", "fileName": "Tétange-Foto-Fändel.JPG", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 80, "type": "image", "src": "assets/photos/wiltz/Tétange-Foto-Ale Pompjeesbau.JPG", "fileName": "Tétange-Foto-Ale Pompjeesbau.JPG", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 81, "type": "image", "src": "assets/photos/wiltz/Schoss-Foto- aal pompel.jpg", "fileName": "Schoss-Foto- aal pompel.jpg", "isImage": true, "isPdf": false, "isVideo": false }
-        ],
-        "articles": [],
-        "videos": []
-    },
-    "luxembourg": {
-        "photos": [],
-        "articles": [
-            { "id": 84, "type": "pdf", "src": "assets/articles/luxembourg/1. Geschichte Feuerlöschwesen.pdf", "fileName": "1. Geschichte Feuerlöschwesen.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 85, "type": "pdf", "src": "assets/articles/luxembourg/1-Brände-Artikel-International.pdf", "fileName": "1-Brände-Artikel-International.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 86, "type": "pdf", "src": "assets/articles/luxembourg/1-Brände-Artikel-National.pdf", "fileName": "1-Brände-Artikel-National.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 87, "type": "pdf", "src": "assets/articles/luxembourg/1-Gründung-Artikel-Corpsen.pdf", "fileName": "1-Gründung-Artikel-Corpsen.pdf", "isImage": false, "isPdf": true, "isVideo": false },
-            { "id": 88, "type": "pdf", "src": "assets/articles/luxembourg/1-Minister Gloden Léon-Artikel- 2024.pdf", "fileName": "1-Minister Gloden Léon-Artikel- 2024.pdf", "isImage": false, "isPdf": true, "isVideo": false }
-        ],
-        "videos": []
-    },
-    "capellen": {
-        "photos": [],
-        "articles": [
-            { "id": 93, "type": "image", "src": "assets/articles/capellen/Ettelbruck-Artikel-Brand Monopol.jpg", "fileName": "Ettelbruck-Artikel-Brand Monopol.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 94, "type": "image", "src": "assets/articles/capellen/Clervaux-Artikel-1978.jpg", "fileName": "Clervaux-Artikel-1978.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 95, "type": "image", "src": "assets/articles/capellen/Bourscheid-Artikel-1978.jpg", "fileName": "Bourscheid-Artikel-1978.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 96, "type": "image", "src": "assets/articles/capellen/Boegen-Artikel-Kantonalfest.jpg", "fileName": "Boegen-Artikel-Kantonalfest.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 97, "type": "image", "src": "assets/articles/capellen/Bissen-Artikel-Festwoche-1984.jpg", "fileName": "Bissen-Artikel-Festwoche-1984.jpg", "isImage": true, "isPdf": false, "isVideo": false },
-            { "id": 98, "type": "image", "src": "assets/articles/capellen/Bigonville-Artikel-Ambulanz 1979.jpg", "fileName": "Bigonville-Artikel-Ambulanz 1979.jpg", "isImage": true, "isPdf": false, "isVideo": false }
-        ],
-        "videos": []
-    },
-    "diekirch": { "photos": [], "articles": [], "videos": [] },
-    "redange": { "photos": [], "articles": [], "videos": [] },
-    "echternach": { "photos": [], "articles": [], "videos": [] },
-    "mersch": { "photos": [], "articles": [], "videos": [] },
-    "grevenmacher": { "photos": [], "articles": [], "videos": [] },
-    "remich": { "photos": [], "articles": [], "videos": [] },
-    "esch-sur-alzette": { "photos": [], "articles": [], "videos": [] }
-};
+// ==================== DYNAMIC CONTENT DATA ====================
+// Content loaded from generated manifest file
+let contentData = {};
+
+// Load content manifest from JSON file
+async function loadContentManifest() {
+    try {
+        const response = await fetch('assets/content.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        contentData = await response.json();
+        console.log('✅ Content manifest loaded successfully');
+        console.log(`📊 Total cantons with content: ${Object.keys(contentData).length}`);
+        return contentData;
+    } catch (error) {
+        console.error('❌ Failed to load content manifest:', error);
+        console.warn('Using empty content data');
+        // Initialize empty structure for all cantons if fetch fails
+        contentData = {
+            "capellen": { "photos": [], "articles": [], "videos": [] },
+            "clervaux": { "photos": [], "articles": [], "videos": [] },
+            "diekirch": { "photos": [], "articles": [], "videos": [] },
+            "echternach": { "photos": [], "articles": [], "videos": [] },
+            "esch-sur-alzette": { "photos": [], "articles": [], "videos": [] },
+            "grevenmacher": { "photos": [], "articles": [], "videos": [] },
+            "luxembourg": { "photos": [], "articles": [], "videos": [] },
+            "mersch": { "photos": [], "articles": [], "videos": [] },
+            "redange": { "photos": [], "articles": [], "videos": [] },
+            "remich": { "photos": [], "articles": [], "videos": [] },
+            "vianden": { "photos": [], "articles": [], "videos": [] },
+            "wiltz": { "photos": [], "articles": [], "videos": [] }
+        };
+        return contentData;
+    }
+}
 
 // ==================== STATE ====================
 const state = {
@@ -171,11 +130,11 @@ const cantonsList = [
 // ==================== CAROUSEL STATE ====================
 let currentIndex = 0;
 
-// ==================== STATIC CONTENT RETRIEVAL ====================
+// ==================== CONTENT RETRIEVAL ====================
 function getStaticContent(canton, mode) {
     const cantonKey = canton.toLowerCase().replace(/-/g, '-');
-    if (STATIC_CONTENT[cantonKey] && STATIC_CONTENT[cantonKey][mode]) {
-        return STATIC_CONTENT[cantonKey][mode];
+    if (contentData[cantonKey] && contentData[cantonKey][mode]) {
+        return contentData[cantonKey][mode];
     }
     return [];
 }
@@ -252,7 +211,11 @@ function setupLanguage() {
 }
 
 // ==================== INITIALIZATION ====================
-function init() {
+async function init() {
+    // Load content manifest first
+    await loadContentManifest();
+
+    // Then set up the rest of the app
     setupNavigation();
     setupLanguage();
     setupContentManager();

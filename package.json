@@ -1,0 +1,17 @@
+{
+  "name": "firefighter-museum-static",
+  "version": "2.0.0",
+  "description": "Static firefighter museum website with automatic content detection",
+  "scripts": {
+    "build": "node generate-content.js",
+    "serve": "npx http-server -p 8000"
+  },
+  "keywords": [
+    "museum",
+    "firefighter",
+    "static-site",
+    "github-pages"
+  ],
+  "author": "",
+  "license": "ISC"
+}

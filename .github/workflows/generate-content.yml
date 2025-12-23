@@ -1,0 +1,41 @@
+name: Generate Content Manifest
+
+on:
+  push:
+    paths:
+      - 'assets/photos/**'
+      - 'assets/articles/**'
+      - 'assets/videos/**'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  generate-manifest:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for proper commits
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-js-version: '20'
+      
+      - name: Generate content manifest
+        run: node generate-content.js
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet assets/content.json || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add assets/content.json
+          git commit -m "chore: regenerate content manifest [skip ci]"
+          git push
